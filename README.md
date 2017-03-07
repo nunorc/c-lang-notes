@@ -207,6 +207,71 @@ int add(int x, int y);
 
 ## *Structs*
 
+Structures are used in C to organize together a collection of variables so
+it can be treated as an unit. For example to represent a point in 2D space
+the following *struct* can be used:
+
+```C
+struct point {
+  int x;
+  int y;
+};
+```
+
+Where `point` is the tag name for the declared *struct* that contains two
+variables of type `int`: `x` and `y`. Variables inside a *struct*
+are usually called members. This declaration defines a new type:
+`struct point` which can be used to declare new variables as any other
+type. For example to declare two new variables `p1` and `p2` of this type:
+```C
+struct point p1, p2;
+```
+These variables can also be initialized in the declaration:
+```C
+struct point p = { 10, 20 };
+```
+This declares a new point `p` where `x` is initialized with the value `10`,
+and `y` with the value `20`.
+
+Individual members of the *struct* can be accessed with the `.` (single dot)
+operator. For example to print the values of the previous example:
+```C
+printf("%d, %d", p.x, p.y);    // prints: 10, 20
+```
+Or to update the values:
+```C
+p.x = 30;
+p.y = 40;
+```
+
+Structures can be nested, for example a rectangle can be defined using two
+points:
+```C
+struct rectangle {
+    struct point p1;
+    struct point p2;
+};
+```
+The `.` operator is used to update or retrieved values in the the nested structure:
+```C
+struct rectangle r;
+r.p1.x = 10;
+r.p1.y = 20;
+printf("%d, %d", r.p1.x, r.p1.y);
+```
+
+Structures, as any other variable type, can be returned from functions, or handled
+as arguments. For example to define a function that creates and returns a new
+point given its' x an y coordinate:
+```C
+struct point new(int x, int y) {
+    struct point n;
+    n.x = x;
+    n.y = y;
+    return n;
+}
+```
+
 ## Pointers
 
 ## Files
