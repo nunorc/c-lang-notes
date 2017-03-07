@@ -274,6 +274,90 @@ struct point new(int x, int y) {
 
 ## Pointers
 
+A pointer is a variable that stores the address of another variable.
+For example, the following declaration creates a new variable `i` of
+type `int` with the value `10`:
+```C
+int i = 10;
+```
+To declare a new variable that is a pointer to an `int` an `*` is added,
+for example declare a new pointer `p`:
+```C
+int *p;
+```
+To assign this new pointer to "point to" the `i` variable declared previously
+the `&` operator is used, which tells us the address where the variable
+is stored.
+```C
+p = &i;
+```
+Now `i` continues to be a variable, and `p` is another variable (a pointer)
+that points to `i`. To get the value pointed by `p` use the `*`, this is
+usually call dereferencing:
+```C
+printf("%d", i);   // prints 10
+printf("%d", *p);  // prints 10
+```
+
+Pointers can be passed as function arguments, for example given the
+following prototype for the `swap`function:
+```C
+void swap(int x, int y);
+```
+The goal of this function is to swap the value of two variables, the
+problem is that in this case the values for `x` and `y` are being passed
+by value, which means that even they are swapped inside the function,
+the variables from where the function were called will remain the same.
+But, we can change the function to receive two pointers as arguments:
+```C
+void swap(int *px, int *py);
+```
+Now we are passing the arguments by reference, meaning that what we
+are use inside the function are not a copy of the values from the caller,
+but a reference to the values themselves (references), meaning that if
+the values are swapped inside the function, they will remain swapper
+when the function returns to the caller. Remember that now we need to
+pass the pointers when calling the function:
+```C
+int a = 10, b = 20;
+swap(&a, &b);
+printf("%d, %d", a, b);  // prints: 20, 10
+```
+
+Array subscripting can also be achieved using pointers. For example,
+declaring a array `a` of `10` elements of type `ìnt`:
+```C
+int a[10];
+```
+Basically this is a block of ten consecutive objects of type `int`. If we
+declare `pa` as a pointer to an integer:
+```C
+int *pa;
+```
+After the following assignment:
+```C
+pa = &a[0];
+```
+the pointer is "pointing at" the first element of the array `a`. For example
+to print the first element of the arrawy pointed by `pa` we can use:
+```C
+printf("%d", *pa);
+```
+We are using the `*` to reference the pointer which gives us the value pointed
+to, i.e. the value stored in the first element of the array. So, if `pa` points
+to the first element of the array, `pa+1` points to the second, `pa+2` points
+to the third, more generically `pa+i` points to `i` elements after the element
+`pa` is pointing at. This is true regardless of the type of variable. For example
+the following `for` loop counts the length of a string pointer `s`:
+```C
+for (count = 0; *s != '\0'; s++)
+  count++;
+```
+Because a string is an array of characters and `s` is of type `char *` (a pointer),
+the `*s` is used to get the character element in the position we are, and `s`
+(the pointer) is incremented by 1 in each iteration, i.e. point to the next element
+of the array (the next character of the string).
+
 ## Files
 
 To read or write from a file, the first step is to open the file. To do this
