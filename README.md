@@ -416,3 +416,7 @@ Both functions take as one argument the character array pointer where to
 set/get the line and the file pointer. `fgets` takes an extra argument:
 the maximum number of characters that it will read.
 
+# References
+
+  * Brian W. Kernighan, and Dennis M. Ritchie. The C Programming Language
+(2nd ed.). Prentice Hall. 1988.
