@@ -272,6 +272,35 @@ struct point new(int x, int y) {
 }
 ```
 
+## *typedef*
+
+`typedef` is used in C to give new names to types. For example the
+declaration
+```C
+typedef int Length;
+```
+creates a new alias (`Length`) for the type `int`. This new alias can
+be used exactly as any other type. For example to declare a new variable:
+```C
+Length l = 10;
+```
+
+This approach can also be used to give name types to user defined *structs*.
+For example to give a new name (`POINT`) to the example *struct* defined
+in the previous section:
+```C
+typedef struct point {
+  int x,
+  int y,
+} POINT;
+```
+Now instead of having to use `struct point`, we can use `POINT` as a type.
+For example in the function prototype `new` that returns a new point:
+```C
+POINT new(int x, int y);
+```
+
+
 ## Pointers
 
 A pointer is a variable that stores the address of another variable.
