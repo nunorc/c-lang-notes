@@ -275,3 +275,60 @@ struct point new(int x, int y) {
 ## Pointers
 
 ## Files
+
+To read or write from a file, the first step is to open the file. To do this
+first we declare new pointer of type `FILE` (types and functions
+described here are provided by the `stdio.h`):
+```C
+FILE *fp;
+```
+And the open the file using the `fopen` function:
+```C
+fp = fopen("input.dat", "r");
+```
+the first argument to the `fopen` function is a string with the name of the
+file to open, and the second argument is also a string defining the
+*mode*: read ("r"), write ("w"), or append ("a"). After the file is used,
+the `fclose` function is used to close the connection to the file.
+```C
+fclose(fp);
+```
+The `fread` and `fwrite` functions, are used to read and write binary data
+from and to files. For example to write the `point` *struct* defined in a
+previous section to the file opened in `fp`:
+```C
+fwrite(&p1, sizeof(struct point), 1, fp);
+```
+The first argument is a pointer to the variable, so in this example the
+`&` is required to get the memory address of the variable; the second
+argument is the size of the *struct* that is computed using the `sizeof`
+function; the third argument is the number of elements to write; and
+the last argument is the file pointer. To read back the data from file,
+and store it back in memory using the `fread` function:
+```C
+fread(&p1, sizeof(struct point), 1, fp);
+```
+
+In particular single characters can be read from a file pointer using
+the `getc` function, and written using the `putc` functions:
+```C
+c = getc(fp);
+putc(c, fp);
+```
+And complete strings using the `fscanf` and `fprintf` functions, which
+behave as their `scanf` and `printf` counterparts but take an additional
+argument: the file pointer to scan from or print, for example:
+```C
+fscanf(fp, "%s", str);
+fprintf(fp, "%s", str);
+```
+Full lines of input can be read from a file using the `fgets` function,
+and written using the `fputs` function, for example:
+```C
+fgets(line, MAX, fp);
+fputs(line, fp);
+```
+Both functions take as one argument the character array pointer where to
+set/get the line and the file pointer. `fgets` takes an extra argument:
+the maximum number of characters that it will read.
+
