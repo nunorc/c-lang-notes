@@ -420,3 +420,10 @@ the maximum number of characters that it will read.
 
   * Brian W. Kernighan, and Dennis M. Ritchie. The C Programming Language
 (2nd ed.). Prentice Hall. 1988.
+
+# Disclaimer
+
+This document is just a collection of notes, topics coverage is **not** complete, and
+many details were omitted on purpose if favor of simplicity. For complete
+details on the C programming language read the references.
+
