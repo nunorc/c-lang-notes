@@ -343,8 +343,9 @@ to print the first element of the arrawy pointed by `pa` we can use:
 ```C
 printf("%d", *pa);
 ```
-We are using the `*` to reference the pointer which gives us the value pointed
-to, i.e. the value stored in the first element of the array. So, if `pa` points
+We are using the `*` to *dereference* the pointer which gives us the value
+pointed
+at, i.e. the value stored in the first element of the array. So, if `pa` points
 to the first element of the array, `pa+1` points to the second, `pa+2` points
 to the third, more generically `pa+i` points to `i` elements after the element
 `pa` is pointing at. This is true regardless of the type of variable. For example
